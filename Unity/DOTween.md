@@ -73,17 +73,17 @@ DOTween.To(() => "", str => myString = str, "hello, world!", 3);
 - 타겟 값과 변화 기간, snap 여부가 인자로 들어감
     - snap이 true면 부드럽게 움직임
 
-###### Move 계열
+#### Move 계열
 `DOMove(Vector3 targetPos, float duration)`: 현재 위치에서 targetPos(Global 좌표)로 duration초 동안 이동
 `DOLocalMove(Vector3 targetPos, float duration)`: 현재 위치에서 targetPos(Local 좌표)로 duration초 동안 이동
 `DOMoveX/Y/Z(float targetPos, float duration)`: 현재 위치에서 특정 축 기준 targetPos(Global 좌표)로 duration초 동안 이동
 `DOLocalMoveX/Y/Z(float targetPos, float duration)`: 현재 위치에서 특정 축 기준 targetPos(Local 좌표)로 duration초 동안 이동
 
-###### Jump 계열
+#### Jump 계열
 `DOJump(Vector3 targetPos, float jumpPower, int jumpNum, float duration)`: 현재 위치에서 targetPos(Global 좌표)로 duration초 동안 jumpPower의 힘으로 jumpNum번 점프하며 이동
 `DOLocalJump(Vector3 targetPos, float jumpPower, int jumpNum, float duration)`: 현재 위치에서 targetPos(Local 좌표)로 duration초 동안 jumpPower의 힘으로 jumpNum번 점프하며 이동
 
-###### Rotate 계열
+#### Rotate 계열
 * RotateMode
 ```
 1. Fast(default): targetPos가 되도록 360도 미만의 최소 회전 값으로 회전
@@ -105,11 +105,11 @@ DOTween.To(() => "", str => myString = str, "hello, world!", 3);
 `DOLookAt(Vector3 targetRot, float duration, AxisConstraint axisConstraint = AxisConstraints.None, Vector3 up = Vector3.up)`: 물체의 **Local 회전**으로 Z축(up으로 설정 가능)이 해당 targetRot을 정면으로 바라보도록 duration초 동안 변경
 `DODynamicLookAt(Vector3 targetRot, float duration, AxisConstraint axisConstraint = AxisConstraints.None, Vector3 up = Vector3.up)`: 위와 동일하지만, 지속적으로 위치가 변경되는 물체를 추적하기 위해선 본 함수 사용 (회전 목표를 매 프레임 계산)
 
-###### Scale 계열
+#### Scale 계열
 `DOScale(Vector3 targetScale, float duration)`: 현재 크기에서 targetScale로 duration초 동안 크기 변경
 `DOScaleX/Y/Z(float targetScale, float duration)` 현재 크기에서 특정 축(X/Y/Z)의 크기가 targetScale가 되도록 duration초 동안 크기 변경
 
-###### Punch 계열
+#### Punch 계열
 펀치 기계를 때린 것처럼 진동하면서 트위닝함
 - punch: punch Vector 방향으로 펀치를 날림
 - vibrato: 얼마나 진동하는지 결정
@@ -121,7 +121,7 @@ DOTween.To(() => "", str => myString = str, "hello, world!", 3);
 `DOPunchRotation(Vector3 punch, float duration, int vibrato, float elaticity)`
 `DOPunchScale(Vector3 punch, float duration, int vibrato, float elaticity)`
 
-###### Shake 계열
+#### Shake 계열
 랜덤으로 흔들리며 트위닝함 (충돌 시 흔들리는 효과 등에 사용)
 - strenth: flaot의 힘으로 진동 / Vector를 사용할 경우, 특정 축에 대한 흔들림
 - vibrato: 얼마나 진동하는지를 결정
@@ -133,11 +133,11 @@ DOTween.To(() => "", str => myString = str, "hello, world!", 3);
 `DOShakeRotation(float duration, float/Vector3 strength, int vibrato, float randomness, bool fadeOut, ShakeRandomnessMode randomnessMode)`
 `DOShakeScale(float duration, float/Vector3 strength, int vibrato, float randomness, bool fadeOut, ShakeRandomnessMode randomnessMode)`
 
-###### Material
+#### Material
 `DOColor(Color to, float duration)`: 색상(RGB)값 변환
 `DOFade(float to, float duration)`: 투명도(Alpha)값 변환
 
-###### Text
+#### Text
 `DOText(string to, float duration, bool richTextEnabled = true, ScrambleMode scrambleMode = ScrambleMode.None, string scrambleChars = null)`
 `DOColor(Color to, float duration)`
 `DOFade(float to, float duration)`
@@ -172,19 +172,19 @@ object3.DOLocalMoveX(300,300).SetAs(tweenParams);
 ```
 
 ### 설정
-###### AutoKill
+#### AutoKill
 `SetAutoKill(bool autoKillOnCompletion = true)`
 사용이 완료된 Tween을 자동으로 Kill해 메모리에서 해제
 ▶ **Garbage가 생성** Garbage Collector가 작동할 수 있음
 
 AutoKill 기능을 꺼 영구적으로 메모리에 영구적으로 적재하고, Tweener 변수에 할당해 재사용함으로서 메모리 관리 측면에서 이득을 볼 수 있음
 
-###### Ease
+#### Ease
 `SetEase(Ease easeType, AnimationCurve animCurve, EaseFunction customEase)`
 움직임의 부드러움, 다양함을 주기 위해 사용하는 시간당 변화량 그래프
 기본값 = Ease.Unset
 
-###### ID
+#### ID
 `SetId(object id)`
 Tween or Sequence에 특정 id를 부여
 id를 통해 static 함수 등으로 제어 가능
@@ -196,7 +196,7 @@ box.DOLocalMoveX(200, 1).SetId(1);
 DOTween.Rewind(1);
 ```
 
-###### Link
+#### Link
 `SetLink(GameObject target, LinkBehaviour linkBehaviour = LinkBehaviour.KillOnDestroy)`
 Tween or Sequence를 타겟 게임 오브젝트에 연결해 **오브젝트의 상태 변화에 따라 트윈을 제어**하게 해줌
 ```C#
@@ -208,12 +208,12 @@ Sequence mySequence = DOTween.Sequence()
 .Join(box.DOLocalMoveX(200, 1));
 ```
 
-###### Delay
+#### Delay
 `SetDelay(float delay, bool asPrependedIntervalIfSequence = false)`
 Tweener or Sequence가 실행되는 시간을 delay초 만큼 지연
 **asPrependedIntervalIfSequence**는 Sequence에만 사용 가능, 각 Tweener마다 delay를 줄지 설정
 
-###### Relative
+#### Relative
 `SetRelative(bool isRelative = true)`
 절대 좌표가 아닌 상대 좌표 기준 트위닝으로 변환
 
