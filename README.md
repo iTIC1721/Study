@@ -8,3 +8,7 @@
   - [EventHandler](./Unity/EventHandler.md)
   - [람다식](./Unity/Lambda.md)
   - [Action / Func](./Unity/ActionFunc.md)
+
+### 🎨Design Pattern
+
+- [옵저버 패턴](./DesignPattern/Observer.md)
