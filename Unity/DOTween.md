@@ -50,8 +50,7 @@ void Start() {
 
 ## Tween
 
-각 애니메이션을 수행하는 하나의 단위
-
+각 애니메이션을 수행하는 하나의 단위  
 Tween을 만드는 방법은 **TO 계열**과 **DO 계열**로 나뉨
 
 ### TO 계열
@@ -202,25 +201,21 @@ object3.DOLocalMoveX(300,300).SetAs(tweenParams);
 #### AutoKill
 `SetAutoKill(bool autoKillOnCompletion = true)`
 
-사용이 완료된 Tween을 자동으로 Kill해 메모리에서 해제
-
-▶ **Garbage가 생성** Garbage Collector가 작동할 수 있음
-
+사용이 완료된 Tween을 자동으로 Kill해 메모리에서 해제  
+▶ **Garbage가 생성**, Garbage Collector가 작동할 수 있음
 
 AutoKill 기능을 꺼 영구적으로 메모리에 영구적으로 적재하고, Tweener 변수에 할당해 재사용함으로서 메모리 관리 측면에서 이득을 볼 수 있음
 
 #### Ease
 `SetEase(Ease easeType, AnimationCurve animCurve, EaseFunction customEase)`
 
-움직임의 부드러움, 다양함을 주기 위해 사용하는 시간당 변화량 그래프
-
+움직임의 부드러움, 다양함을 주기 위해 사용하는 시간당 변화량 그래프  
 기본값 = Ease.Unset
 
 #### ID
 `SetId(object id)`
 
-Tween or Sequence에 특정 id를 부여
-
+Tween or Sequence에 특정 id를 부여  
 id를 통해 static 함수 등으로 제어 가능
 
 ```C#
@@ -248,8 +243,7 @@ Sequence mySequence = DOTween.Sequence()
 #### Delay
 `SetDelay(float delay, bool asPrependedIntervalIfSequence = false)`
 
-Tweener or Sequence가 실행되는 시간을 delay초 만큼 지연
-
+Tweener or Sequence가 실행되는 시간을 delay초 만큼 지연  
 **asPrependedIntervalIfSequence**는 Sequence에만 사용 가능, 각 Tweener마다 delay를 줄지 설정
 
 #### Relative
