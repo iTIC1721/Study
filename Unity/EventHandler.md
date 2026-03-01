@@ -1,5 +1,10 @@
 # 📌EventHandler
 
+###### 참조
+[델리게이트](./Delegate.md)
+
+---
+
 `using System;` 선언 후 사용 가능  
 내부 정의: `public delegate void EventHandler(object sender, EventArgs e);`
 - `object sender`: 이벤트를 실행시키는 객체
