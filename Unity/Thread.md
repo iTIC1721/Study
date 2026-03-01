@@ -162,3 +162,31 @@ Abort보다 좀 더 유연한 종료가 가능
 `thread.IsBackground = true;`를 통해 적용할 수 있음
 
 로그 기록/캐시 정리 등 중요하지 않은 작업에 주로 사용
+
+## ThreadState
+
+```C#
+namespace System.Threading {
+    public enum ThreadState {
+        Running = 0,
+        StopRequested = 1,
+        SuspendRequested = 2,
+        Background = 4,
+        Unstarted = 8,
+        Stopped = 16,
+        WaitSleepJoin = 32,
+        Suspended = 64,
+        AbortRequested = 128,
+        Aborted = 256
+    }
+}
+```
+
+1. Unstarted: Start()가 실행되기 전 상태
+2. Running: 스레드가 동작 중인 상태
+3. Suspended: Suspend()를 통해 일시 중단된 상태, Resume() 호출로 재개될 때까지 대기
+4. WaitSleepJoin: Wait(), Sleep(), Join() 등으로 일시 중단 상태, 특정 조건까지만 대기
+5. Aborted: Abort()를 통해 취소된 상태, 이후 강제 종료되어 Stopped 상태로 전환
+6. Stopped: 스레드 중지 상태
+7. Background: 백그라운드 스레드 상태
+
