@@ -1,6 +1,7 @@
 # 📕Study
 
-### 🎮Unity
+### 🎮Unity / C#
 
 - [DOTween](./Unity/DOTween.md)
-- [Coroutine](./Unity/Coroutine.md)
+- [코루틴](./Unity/Coroutine.md)
+- [델리게이트](./Unity/Delegate.md)
