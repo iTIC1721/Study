@@ -19,3 +19,4 @@
 ### 🗝️Algorithm
 
 - [DFS / BFS](./Algorithm/DFSBFS.md)
+- [Dijkstra](./Algorithm/Dijkstra.md)
