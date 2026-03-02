@@ -13,7 +13,7 @@
     - 그렇게 계산된 누적 거리가 그 노드의 dist값보다 작다면 dist를 갱신하고 그 (누적 거리, 노드 번호)를 우선순위 큐에 넣음, 이후 우선순위 큐가 빌 때까지 반복
 4. 최종 dist 배열이 시작 정점에서부터 각 정점으로의 최단 거리
 
-![다익스트라 초기상태](https://example.com/image.jpg)
+![다익스트라 초기상태](./Images/dijkstragraph.jpg)
 ```C#
 public List<int> Dijkstra(List<(int weight, int node)>[] maps, int start)
 {
