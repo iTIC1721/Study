@@ -14,3 +14,7 @@
 ### 🎨Design Pattern
 
 - [옵저버 패턴](./DesignPattern/Observer.md)
+
+### 🗝️Algorithm
+
+- [DFS / BFS](./Algorithm/DFSBFS.md)
