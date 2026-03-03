@@ -22,4 +22,5 @@
 
 - [DFS / BFS](./Algorithm/DFSBFS.md)
 - [Dijkstra](./Algorithm/Dijkstra.md)
+- [Bellman-Ford](./Algorithm/BellmanFord.md)
 - [Floyd-Warshall](./Algorithm/FloydWarshall.md)
