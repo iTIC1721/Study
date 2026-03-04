@@ -14,6 +14,7 @@
   - [Task](./Unity/Task.md)
   - [async / await](./Unity/AsyncAwait.md)
 - [확장 메서드](./Unity/ExtensionMethod.md)
+- [익명 타입](./Unity/AnonymousType.md)
 
 ### 🎨Design Pattern
 
