@@ -182,3 +182,9 @@ foreach (var one in monster) {
 }
 ```
 ▶ monsters에 있는 모든 행은 전부 출력하되, monsterDatas에 있는 이름을 가진 행은 정상적으로 출력하고, monsterDatas에 이름이 없는 행은 Name = "없음"인 기본 데이터로 출력
+
+## LINQ 사용 시 주의사항
+각 LINQ 쿼리는 새로운 IEnumerable 객체를 생성하며, 이는 메모리 할당 증가 및 가비지 컬렉션(GC) 부담이 커질 수 있음  
+특히 Update문에서의 LINQ 사용은 특히 조심해야 하며, 작업에 따라 직접 반복문을 통해 구현하는 것이 좋을 수 있음
+
+
