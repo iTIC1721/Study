@@ -27,7 +27,7 @@
 ### Vulnerability(취약점)
 공격자가 악용할 수 있는 시스템/네트워크/소프트웨어의 보안 약점 또는 결함
 - 예시: OpenSSL의 HeartBleed 취약점  
-![HeartBleedExplain](https://i.namu.wiki/i/luw4z1aVz9oQHuD_KKPvSJfBbTTYDV-XB4vK5JAdG-yH4Tet0uyIPaqJd6nLuakNkgv330JYCdAOId0LOtl2KqEbOkaxGPIEA2rIHgwbruu9EtPRrwACV_WwplSO72WeaqyhOAP_HdS5JUduk9ttPQ.webp)
+![HeartBleedExplain](./Image/heartbleed.jpg)
 - CVE (Common Vulnerabilities and Exposures): 공개적으로 알려진 보안 취약점의 목록, 'CVE-년도-ID' 형식으로 관리
 ### Bug(버그)
 소프트웨어의 오류나 결함, 모든 버그가 취약점인 것은 아님
