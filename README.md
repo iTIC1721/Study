@@ -21,6 +21,7 @@
 ### 🎨Design Pattern
 
 - [옵저버 패턴](./DesignPattern/Observer.md)
+- [팩토리 패턴](./DesignPattern/Factory.md)
 
 ### 🗝️Algorithm
 
