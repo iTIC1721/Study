@@ -31,6 +31,4 @@
 
 ### 🏫COSE
 
-#### 소프트웨어보안
-
-- [Software Security Principles](./COSE/SoftwareSecurity/SoftwareSecurityPrinciples.md)
+- [COSE451 소프트웨어 보안](./COSE/SoftwareSecurity.md)
