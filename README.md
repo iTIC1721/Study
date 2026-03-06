@@ -33,4 +33,5 @@
 ### 🏫COSE
 
 - [COSE451 소프트웨어보안](./COSE/SoftwareSecurity.md)
+- [COSE461 자연어처리](./COSE/NaturalLanguageProcessing.md)
 - [COSE490 전산학특강](./COSE/SpecialLectureForComputerScience.md)
