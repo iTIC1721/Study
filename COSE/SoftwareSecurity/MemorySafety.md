@@ -61,12 +61,12 @@ gets(buf);
 
 ##### Stack Frame: 함수가 호출될 때, 함수마다 생성되는 스택 영역 구조
 ```
----- (High Address)
-RET (return address)
-SFP (stack frame pointer)
-로컬 변수들
-매개변수들
 ---- (Low Address)
+로컬 변수들
+SFP (stack frame pointer)
+RET (return address)
+함수의 매개변수들
+---- (High Address)
 ```
 함수 종료 시 제거됨
 
