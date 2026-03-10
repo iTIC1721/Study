@@ -68,11 +68,7 @@ RET (return address)
 함수의 매개변수들
 ---- (High Address)
 ```
-함수 종료 시 제거됨
-
-**메모리에 데이터가 저장되는 방식**: Little Endian - Least Significant Byte 먼저 저장  
-ex) 0x12345678 -> 78 56 34 12 순으로 저장  
-사용하는 이유: CPU 연산 효율(대부분의 CPU가 low byte 데이터 먼저 처리) 및 레지스터 정렬 문제 해결 위함  
+함수 종료 시 제거됨  
 
 **Stack Buffer Overflow가 생기는 예시**  
 ![sbo_1](./Image/sbo_1.png)  
