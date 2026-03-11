@@ -2,7 +2,7 @@
 
 행동을 캡슐화하고 동적으로 변경할 수 있게 해줌  
 
-## 사용 방법
+## 기본 원리
 ```C#
 public abstract class State
 {
