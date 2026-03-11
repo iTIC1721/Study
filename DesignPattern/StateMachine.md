@@ -122,8 +122,6 @@ public class IdleState : State
 ```C#
 public class Entity : MonoBehaviour
 {
-    [SerializeField] StateDB stateDB;
-
     StateMachine stateMachine;
 
     void Awake()
