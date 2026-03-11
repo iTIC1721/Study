@@ -22,7 +22,8 @@
 
 - [옵저버 패턴](./DesignPattern/Observer.md)
 - [팩토리 패턴](./DesignPattern/Factory.md)
-- [상태 머신 패턴](./DesignPattern/StateMachine.md)
+- [상태 패턴](./DesignPattern/StateMachine.md)
+  - [Behaviour Tree](./DesignPattern/BehaviourTree.md)
 
 ### 🗝️Algorithm
 
