@@ -62,10 +62,14 @@ public class StateMachine
 
     public void ChangeState<T>() where T : State
     {
+        if (!states.ContainsKey(typeof(T)))
+        {
+            Debug.LogWarning($"Type {T} is not registered.");
+            return;
+        }
+
         currentState?.Exit();
-
         currentState = states[typeof(T)];
-
         currentState.Enter();
     }
 
