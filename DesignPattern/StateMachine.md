@@ -13,9 +13,9 @@ public abstract class State
         this.entity = entity;
     }
 
-    public override void OnStateEnter();
-    public override void OnStateUpdate();
-    public override void OnStateExit();
+    public override void Enter();
+    public override void Update();
+    public override void Exit();
 }
 ```
 ```C#
@@ -24,15 +24,15 @@ public class Entity : MonoBehaviour
     State currentState;
     public void SetState(State state)
     {
-        currentState?.OnStageExit();
+        currentState?.Exit();
 
         currentState = state;
-        currentState?.OnStateEnter();
+        currentState?.Enter();
     }
 
     void Update()
     {
-        currentState?.OnStateUpdate();
+        currentState?.Update();
     }
 }
 ```
@@ -48,81 +48,105 @@ SetState(idleState);
 
 ---
 
-여러 상태의 자유로운 추가를 위해 Factory 패턴을 활용해 아래와 같은 방법도 생각해볼 수 있음
+여러 상태의 자유로운 추가를 위해 아래와 같은 방법도 생각해볼 수 있음
 ```C#
-public static class StateFactory
+public class StateMachine
 {
-    private static Dictionary<string, Func<Entity, State>> creators
-        = new();
+    Dictionary<Type, State> states = new();
+    State currentState;
 
-    public static void Register(string name, Func<Entity, State> creator)
+    public void Register(State state)
     {
-        creators.Add(name, creator);
+        states.Add(state.GetType(), state);
     }
 
-    public static State Create(string name, Entity entity)
+    public void ChangeState<T>() where T : State
     {
-        if (creators.TryGetValue(name, out var creator))
-            return creator(entity);
+        currentState?.Exit();
 
-        throw new Exception($"State {name} not registered");
+        currentState = states[typeof(T)];
+
+        currentState.Enter();
+    }
+
+    public void Update()
+    {
+        currentState?.Update();
     }
 }
 ```
 ```C#
+public abstract class State
+{
+    protected Entity entity;
+    protected StateMachine stateMachine;
+
+    protected State(Entity entity, StateMachine stateMachine)
+    {
+        this.entity = entity;
+        this.stateMachine = stateMachine;
+    }
+
+    public virtual void Enter() {}
+    public virtual void Update() {}
+    public virtual void Exit() {}
+}
+
+
+// 예시 State
 public class IdleState : State
 {
-    // 자동으로 이름 등록
-    static IdleState()
-    {
-        StateFactory.Register("Idle", e => new IdleState(e));
-    }
+    public IdleState(Entity entity, StateMachine sm)
+        : base(entity, sm) {}
 
-    public IdleState(Entity entity) : base(entity) {}
-
-    public override void Enter()
+    public override void Update()
     {
-        Debug.Log("Idle");
+        if (entity.PlayerDetected())
+        {
+            stateMachine.ChangeState<MoveState1>();
+        }
     }
 }
 ```
 ```C#
-[CreateAssetMenu(menuName="ScriptableObject/StateDB")]
+[CreateAssetMenu(menuName="FSM/StateDB")]
 public class StateDB : ScriptableObject
 {
-    [SerializeField] List<string> states;
+    [SerializeField] List<MonoScript> states;
 
-    public List<string> States => states;
+    public List<MonoScript> States => states;
 }
 ```
 ```C#
 public class Entity : MonoBehaviour
 {
     [SerializeField] StateDB stateDB;
-    Dictionary<string, State> states = new();
 
-    State currentState;
+    StateMachine stateMachine;
 
     void Awake()
     {
-        foreach (var name in stateDB.States)
+        stateMachine = new StateMachine();
+
+        foreach (var script in stateDB.States)
         {
-            states.Add(name, StateFactory.Create(name, this));
+            var type = script.GetClass();
+            var state = (State)Activator.CreateInstance(type, this, stateMachine);
+            stateMachine.Register(state);
         }
     }
 
-    public void SetState(State state)
+    void Start()
     {
-        currentState?.OnStageExit();
-
-        currentState = state;
-        currentState?.OnStateEnter();
+        stateMachine.ChangeState<IdleState>();
     }
 
     void Update()
     {
-        currentState?.OnStateUpdate();
+        stateMachine.Update();
     }
 }
 ```
+- StateDB에서 해당 엔티티가 사용 가능한 State 스크립트들을 지정
+- `stateMachine.ChangeState<TypeName>()`로 상태 변환
 
