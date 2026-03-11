@@ -50,26 +50,33 @@ SetState(idleState);
 
 여러 상태의 자유로운 추가를 위해 아래와 같은 방법도 생각해볼 수 있음
 ```C#
+public enum StateType
+{
+    Idle,
+    Move,
+    Attack
+}
+```
+```C#
 public class StateMachine
 {
-    Dictionary<Type, State> states = new();
+    Dictionary<StateType, State> states = new();
     State currentState;
 
-    public void Register(State state)
+    public void Register(StateType type, State state)
     {
-        states.Add(state.GetType(), state);
+        states[type] = state;
     }
 
-    public void ChangeState<T>() where T : State
+    public void ChangeState(StateType type)
     {
-        if (!states.ContainsKey(typeof(T)))
-        {
-            Debug.LogWarning($"Type {T} is not registered.");
+        if (!states.ContainsKey(type)) {
+            Debug.LogWarning($"{type} state is not registered.");
             return;
         }
 
         currentState?.Exit();
-        currentState = states[typeof(T)];
+        currentState = states[type];
         currentState.Enter();
     }
 
@@ -107,18 +114,9 @@ public class IdleState : State
     {
         if (entity.PlayerDetected())
         {
-            stateMachine.ChangeState<MoveState1>();
+            stateMachine.ChangeState(StateType.Move);
         }
     }
-}
-```
-```C#
-[CreateAssetMenu(menuName="FSM/StateDB")]
-public class StateDB : ScriptableObject
-{
-    [SerializeField] List<MonoScript> states;
-
-    public List<MonoScript> States => states;
 }
 ```
 ```C#
@@ -132,17 +130,15 @@ public class Entity : MonoBehaviour
     {
         stateMachine = new StateMachine();
 
-        foreach (var script in stateDB.States)
-        {
-            var type = script.GetClass();
-            var state = (State)Activator.CreateInstance(type, this, stateMachine);
-            stateMachine.Register(state);
-        }
+        // 엔티티에 따라 다른 스크립트 지정 가능
+        stateMachine.Register(StateType.Idle, new IdleState(this, stateMachine));
+        stateMachine.Register(StateType.Move, new MoveState(this, stateMachine));
+        stateMachine.Register(StateType.Attack, new AttackState(this, stateMachine));
     }
 
     void Start()
     {
-        stateMachine.ChangeState<IdleState>();
+        stateMachine.ChangeState(StateType.Idle);
     }
 
     void Update()
@@ -151,6 +147,6 @@ public class Entity : MonoBehaviour
     }
 }
 ```
-- StateDB에서 해당 엔티티가 사용 가능한 State 스크립트들을 지정
-- `stateMachine.ChangeState<TypeName>()`로 상태 변환
+- Entity는 초기화 시 상태 종류에 따른 State 스크립트 지정
+- `stateMachine.ChangeState()`로 상태 변환
 
