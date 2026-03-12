@@ -34,7 +34,7 @@ array[1000] (n < 1000)
 이 경우 다른 메모리 영역에 데이터가 덮어씌워지게 됨
 → **권한을 무시한 공격 가능!**
 
-### 방어 방법
+#### 방어 방법
 
 1. 입력값이 valid한지 검증
 
@@ -45,7 +45,7 @@ ex) Java, C#, Python, Rust 등은 자동 bound check 과정이 있음
 ex) strcpy, gets 등...  
 동적/ 정적 분석 툴 사용  
 
-### Buffer OVerflow 공격의 근본적인 원인
+### Buffer Overflow 공격의 근본적인 원인
 1. RET 주소를 덮어쓰기 가능
 2. 버퍼 주소를 공격자가 알 수 있음
 3. 버퍼가 실행 가능 영역에 존재
@@ -56,12 +56,12 @@ CANARY 값이 변경될 것을 감지하면 프로그램이 이를 감지
 
 2. ASLR (Address Space Layout Randomization)  
 프로그램 실행 시 Stack, Heap, Library 주소를 랜덤화  
-이를 통해 공격자가 shellcode(버퍼) 주소를 예측 불가능
+이를 통해 공격자가 shellcode 주소를 예측 불가능
 
-3. NX-bit  
-NX-Bit(Never eXecute Bit) == XD (eXecute Disable) / DEP (Data Execution Prevention)  
+3. NX-bit (Never eXecute Bit)  
+( == XD (eXecute Disable) / DEP (Data Execution Prevention)  )  
 현대 컴퓨터 프로세서에서 사용되는 하드웨어 기반 보안 기능
-메모리 영역을 Executable 영역과 Non-Executable 영역으로 구분
+메모리 영역을 Executable 영역과 Non-Executable 영역으로 구분  
 ▶ Stack이나 Heap의 데이터 영역을 Non-Executable하게 함
 
 
