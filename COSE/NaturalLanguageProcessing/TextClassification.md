@@ -78,7 +78,7 @@ P(wi|c) = Count(wi, c) / ∑​_(w∈V)( Count(w​, c) )
 ### Data Sparsity 문제
 훈련 세트에 없는 단어가 있으면 전체 확률도 망가짐
 
-예)
+예)  
 단어 fantastic이 훈련 세트에 없다면, P(fantastic | positive) = 0  
 → 전체 확률도 망가짐
 
@@ -116,9 +116,9 @@ Test Set
 2. Stop word(정보량이 없는 단어들: the, with, is, and 등) 제거: predictable ~~with~~ no fun
 3. P(wi|c) 계산(α=1):    
   P(predictable|-) = (1+1)/(14+20) = 2/34,  
-  P(predictable|+) = (0+1)/(9+20) = 1/29,
+  P(predictable|+) = (0+1)/(9+20) = 1/29,  
   P(no|-) = (1+1)/(14+20) = 2/34,  
-  P(no|+) = (0+1)/(9+20) = 1/29,
+  P(no|+) = (0+1)/(9+20) = 1/29,  
   P(fun|-) = (0+1)/(14+20) = 1/34,  
   P(fun|+) = (1+1)/(9+20) = 2/29
 4. 최종 점수를 계산:  
@@ -231,8 +231,9 @@ z = w1​x1 ​+ w2​x2 ​+ ... + wk​xk ​+ b
 
 3. **Classification 결정**
 
-ex) y = 1 (y' ​>= 0.5)
-    y = 0 (y' < 0.5)
+ex)  
+y = 1 (y' ​>= 0.5)  
+y = 0 (y' < 0.5)
 
 
 ### Loss Function
@@ -249,14 +250,14 @@ Loss = -∑( yi * log(yi') + (1 - yi)log(1 - yi') )
 #### Gradient Descent
 yi' = σ(w ⋅ xi + b),  
 Loss = -∑( yi * log(yi') + (1 - yi)log(1 - yi') )이므로,  
-Gradient_w: dLoss(w,b) / dwi = ∑( (yi' - yi)xij )
+Gradient_w: dLoss(w,b) / dwi = ∑( (yi' - yi)xij )  
     - xij = feature vector x의 j번째 값
 
 Gradient_b: dLoss(w,b) / db = ∑( yi' - yi )
 
-Gradient를 이용해 w, b 조정
-w = w - η * Gradient_w
-b = b - η * Gradient_b
+Gradient를 이용해 w, b 조정  
+w = w - η * Gradient_w  
+b = b - η * Gradient_b  
 - η: learning rate
 
 
