@@ -4,3 +4,4 @@ COSE451
 - [소프트웨어 보안 기본 & 용어 정리 (3/5)](./SoftwareSecurity/SoftwareSecurityPrinciples.md)
 - [Memory Safety (3/10)](./SoftwareSecurity/MemorySafety.md)
 - [Memory Safety II (3/12)](./SoftwareSecurity/MemorySafety2.md)
+- [Memory Safety III (3/17)](./SoftwareSecurity/MemorySafety3.md)
