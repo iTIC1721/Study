@@ -33,12 +33,12 @@ C/C++에서는 직접 메모리를 관리해야 함:
 ## 레지스터
 | 레지스터    | 역할        |
 | ------- | --------- |
-| esp     | 스택 top    |
-| ebp     | 스택 기준     |
-| eip     | 실행할 코드 위치 |
-| eax     | 반환값       |
-| ecx     | 반복 카운터    |
-| esi/edi | 데이터 이동    |
+| esp (stack pointer)     | 스택 top    |
+| ebp (stack base pointer)    | 스택 기준     |
+| eip (instruction pointer)    | 실행할 코드 위치 |
+| eax     | 자유 사용 (주로 반환값)       |
+| ecx     | 자유 사용 (주로 반복 카운터)    |
+| esi/edi | 자유 사용 (주로 데이터 이동)    |
 
 ### Stack Frame
 각 함수의 스택 공간을 구별하기 위한 공간  
