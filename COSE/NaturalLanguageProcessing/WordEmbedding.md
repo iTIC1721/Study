@@ -15,7 +15,7 @@
 ## Word Representation
 ### Distributional Hypothesis
 
-> "단어의 의미는 그 사용에 있다"
+> "단어의 의미는 그 사용에 있다"  
 > "같은 문맥에 등장하면 비슷한 의미"
 
 비슷한 문맥 → 비슷한 의미
@@ -73,7 +73,7 @@ PPMI = max(PMI, 0)
 
 ### Dense Vector
 
-기존 co-occurrence 벡터의 문제: 차원 = vocab 크기이므로 너무 sparse함(0이 많음) → 메모리 낭비가 심하고 학습이 어려움
+기존 co-occurrence 벡터의 문제: 차원 = vocab 크기이므로 너무 sparse함(0이 많음) → 메모리 낭비가 심하고 학습이 어려움  
 → 적은 차원으로 일반화 가능한 벡터 구조를 찾자
 
 1. Count 기반  
@@ -122,8 +122,8 @@ crises
 ```
 
 - Objective Function  
-모델의 성능 평가 함수  
-![목적함수]()
+모델의 성능 평가 함수    
+![objfunc](./Image/objfunc.png)
 
 ▶ 𝑃(𝑤_𝑡+𝑗 | 𝑤_𝑡;𝜃)를 어떻게 정의하는가?
 
@@ -131,10 +131,10 @@ crises
 - u_a: a가 중심 단어일때의 벡터
 - v_b: b가 주변 단어일때의 벡터
 
-두 벡터의 내적 u_a ⋅ v_b은 a가 b와 함께 등장할 확률을 나타냄
-![softmax]()
+두 벡터의 내적 u_a ⋅ v_b은 a가 b와 함께 등장할 확률을 나타냄  
+![softmax](./Image/softmax.png)
 
-- word2vec 계산
+- word2vec 계산  
 → 교재 pdf (Word Embedding) 44p~51p 참조
 
 ### Softmax 알고리즘의 문제점
