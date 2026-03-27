@@ -113,7 +113,7 @@ P(S,O) = ∏_(i=1~n) ( ​P(si​∣si−1​) * P(oi​∣si​) )      ∵ π(
 
 S∗ = argmax_S( ​P(S∣O) )                => P(S | O)를 가장 크게 만드는 S를 구하기  
    = argmax_S( ​P(O∣S) * P(S) )    (P(O)는 상수값이므로 제거)  
-   = **arg​max_s1~sn(​ ∏_(i=1~n) ( ​P(si​∣si−1​) * P(oi​∣si​) ) )**
+   = **arg​max_s1\~sn(​ ∏_(i=1\~n) ( ​P(si​∣si−1​) * P(oi​∣si​) ) )**
 
 #### brute force 접근
 -> 탐색 수 = K^n (K = tag 개수 ≈ 45, n = 문장 길이 ≈ 10~20) => 현실적으로 불가능
