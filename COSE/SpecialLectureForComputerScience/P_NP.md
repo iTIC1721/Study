@@ -184,9 +184,10 @@ LP → LI: 최적해는 항상 **꼭짓점(vertex)**에서 발생하므로, feas
 
 ### NP의 새로운 정의
 NP = Existential Second-Order Logic (SOE)
-> ∃R such that ϕ(A,R) = true
-> A: 입력 구조 (그래프 등)
+> ∃R such that ϕ(A,R) = true  
+> A: 입력 구조 (그래프 등)  
 > R: 우리가 찾는 **증명** (certificate)
+어떤 구조 A에 대해 "존재하는 어떤 2차 논리식(s)"이 참이면 NP에 포함
 
 ```
 예시: 3-Coloring
@@ -201,6 +202,124 @@ NP = Existential Second-Order Logic (SOE)
 예시: Hamiltonian Cycle
     ∃(cycle C) such that 모든 정점을 정확히 한 번 방문
 ```
+
+## Heuristics
+
+NP-hard 문제(SAT 등)는 항상 빠르게 풀 수는 없음  
+대신 "잘 되는 경우가 많게" 만드는 전략 => **heuristic**
+
+### 탐색 전략
+SAT는 본질적으로 경우의 수가 2^n이므로 완전 탐색하면 너무 느림  
+=> 탐색 전략이 필요
+
+1. **Optimist**
+
+해가 존재할 것이라는 관점 -> 될 것 같은 방향으로 밀어붙임
+- 변수 하나를 선택하여 일단 true를 넣어봄
+- 식이 깨지지 않는다면 그 부분 제거
+
+2. **Pessimist**
+
+해가 존재할 수 없을 것이라는 관점
+- false를 넣어가며 모든 경우를 논리적으로 고려하여 모든 경우에 불가능하다는 것을 확인
+
+### Backtracking
+Optimist와 Pessimist를 결합하여 진행
+
+Optimist처럼 진행하다가, 실패하면 Pessimist 방향으로 수행
+```
+문제
+(p ∨ ~q) ∧ (q ∨ r) ∧ (~r ∨ ~p)
+
+풀이
+1. 변수 p를 선택 후 true를 넣어봄
+2. (p ∨ ~q) = true    => true이므로 이 부분은 지움
+3. p가 true이므로 (~r ∨ ~p)에서 ~p는 지워짐    => (~r)
+4. 변수 q를 선택 후 true를 넣어봄
+5. (q ∨ r) = true    => true이므로 이 부분도 지움
+6. 변수 r을 선택 후 true를 넣어봄
+7. (~r) = false이므로 모순 발생!!
+8. 가장 최근 결정으로 backtrack    => r에 false 넣어봄
+9. (~r) = true    => true이므로 이 부분도 지움
+10. 전체 formula가 지워짐 => 해 찾기 성공
+```
+
+## Boolean Circuit
+계산을 표현할 수 있는 또다른 계산 모델
+
+Boolean Circuit = 방향성 비순환 그래프 (DAG)
+- input node: 입력 변수
+- gate (non-input node): AND / OR / NOT
+- output node: 최종 결과
+
+ex) 3-bit full adder
+
+회로의 크기(size): 회로에 있는 게이트의 총 개수 (input과 output 제외)  
+회로의 깊이(depth): 입력에서 출력까지 이동하는 가장 긴 경로의 길이 (input과 output 제외)
+
+### Circuit Family
+기존 Circuit은 입력 크기가 고정되어 있음 -> 길이가 변하는 입력은 대응 불가
+
+=> 입력 크기 n마다 별도의 회로 Cn 존재  
+        => 이것이 **Circuit Family**
+
+## Hardware vs Software
+같은 문제를 하드웨어(Boolean Circuit 등)으로도 풀 수 있고, 소프트웨어(Universal TM, 튜링 완전 프로그래밍 언어 등)로도 풀 수 있음
+
+이론적으로는 Hardware = Software  
+but 실제로는 약간의 차이 있음
+
+1. Efficiency: 소프트웨어는 순차적으로 실행하지만 하드웨어는 병렬적으로 실행할 수 있음
+2. Circuit은 입력 길이마다 다른 회로를 사용할 수 있지만, 소프트웨어는 하나의 프로그램으로 모든 입력 처리
+
+## Quine
+자기 자신을 출력하는 프로그램
+
+von Neumann 구조에서는 **프로그램 = 데이터**  
+코드가 메모리에 저장되므로, 프로그램이 자기 자신을 읽을 수 있음
+
+## Rice Theorem
+> 프로그램의 의미적 성질은 일반적으로 판별 불가능하다
+
+F를 모든 계산 가능한 부분 함수들 집합의 비자명한 부분집합이라고 하자.  
+그리고 Sf를 F에 속하는 함수를 계산하는 기계들을 기술하는 문자열 집합이라고 하자.  
+=> **Sf에 속하는지 여부를 결정하는 것**은 알고리즘으로 해결할 수 없음
+
+이유: 프로그램은 자기 참조가 가능(quine 등), Halting Problem과 같은 이유.
+
+## Uniform Circuit Family
+모든 입력 길이 n에 대해서 Circuit Cn을 만드는 것이 쉽지 않을 수 있음  
+n이 작다고 항상 만들기 쉬운 것은 아니며, 오히려 n이 클수록 만들기 쉬울 수도 있음  
+
+Circuit Family가 uniform하다는 것은: 모든 n에 대해 Cn을 O(log s(n)) 안에 만들어낼 수 있어야 함  
+※ s(n)은 회로 Cn의 크기
+
+## Simulation of t(n) time bound TM / s(n) space bound TM
+
+t(n) time bound TM은 크기 O( t(n)logt(n) )의 uniform circuit으로 시뮬레이션될 수 있음  
+s(n) space bound TM은 깊이 O( s*(n)^2 )의 uniform circuit으로 시뮬레이션될 수 있음 ( s*(n) = max{s(n), upper(logn)} )
+
+## Polynomial Circuits
+
+어떤 언어 L이 polynomial circuits를 가진다는 것은
+
+- 입력 길이 n마다 회로 Cₙ이 있고
+- 그 회로 크기는 polynomial이고
+- 그 회로가 L의 정답을 정확히 계산한다는 뜻
+
+### Theorem
+1. P 문제는 전부 polynomial 크기의 회로로 구현 가능
+2. 확률 알고리즘(BPP)도 polynomial 회로로 표현 가능
+3. L이 uniform polynomial circuits를 가짐 **iff** L이 P에 속함
+
+
+## 2 OPEN PROBLEMS
+1. P 문제들, 또는 NP 문제들이 전부 O(n) 크기(선형 크기) 회로로 가능한지?
+2. 반드시 exponential-size(2^n) 회로가 필요한 문제가 존재하는가?
+
+둘 다 아직 미해결
+
+
 
 
 
