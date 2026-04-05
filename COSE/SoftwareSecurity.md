@@ -5,3 +5,4 @@ COSE451
 - [Memory Safety (3/10)](./SoftwareSecurity/MemorySafety.md)
 - [Memory Safety II (3/12)](./SoftwareSecurity/MemorySafety2.md)
 - [Memory Safety III (3/17)](./SoftwareSecurity/MemorySafety3.md)
+- [Practical Exercises (3/19~)](./SoftwareSecurity/PracticalExercises.md)
