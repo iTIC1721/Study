@@ -7,3 +7,4 @@ COSE451
 - [Memory Safety III (3/17)](./SoftwareSecurity/MemorySafety3.md)
 - [Practical Exercises (3/19~)](./SoftwareSecurity/PracticalExercises.md)
 - [Various Software Vulnerabilities (3/31~)](./SoftwareSecurity/VariousSoftwareVulnerabilities.md)
+- [Open-source Software Security (4/7)](./SoftwareSecurity/OSS.md)
