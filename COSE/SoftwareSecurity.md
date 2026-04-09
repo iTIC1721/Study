@@ -8,3 +8,4 @@ COSE451
 - [Practical Exercises (3/19~)](./SoftwareSecurity/PracticalExercises.md)
 - [Various Software Vulnerabilities (3/31~)](./SoftwareSecurity/VariousSoftwareVulnerabilities.md)
 - [Open-source Software Security (4/7)](./SoftwareSecurity/OSS.md)
+- [Web Security (4/9)](./SoftwareSecurity/WebSecurity.md)
