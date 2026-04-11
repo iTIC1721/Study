@@ -6,3 +6,4 @@ COSE461
 - [Word Embedding (3/20)](./NaturalLanguageProcessing/WordEmbedding.md)
 - [Sequence Models (3/27)](./NaturalLanguageProcessing/SequenceModels.md)
 - [Recurrent Neural Networks (4/3)](./NaturalLanguageProcessing/RNN.md)
+- [Sequence-to-Sequence (4/10)](./NaturalLanguageProcessing/SequenceToSequence.md)
