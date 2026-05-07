@@ -9,3 +9,4 @@ COSE451
 - [Various Software Vulnerabilities (3/31~)](./SoftwareSecurity/VariousSoftwareVulnerabilities.md)
 - [Open-source Software Security (4/7)](./SoftwareSecurity/OSS.md)
 - [Web Security (4/9)](./SoftwareSecurity/WebSecurity.md)
+- [Race Condition & Format String (5/7)](./SoftwareSecurity/VSV3.md)
